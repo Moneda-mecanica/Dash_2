@@ -7,7 +7,7 @@ import dash
 #dcc.Loading
 
 
-from bibli_funciones import tab_graficos_dem_a, leer_archivo_raw_demanda, cargar_datos_excel, ejecucion_demanda_parte_2, dem_total, Aplicativo
+from bibli_funciones import  ejecucion_demanda_parte_2, dem_total, Aplicativo
 
 #global 
 #option_usuario_3_a, usuario_atipico
@@ -20,7 +20,7 @@ url = 'http://127.0.0.1:8050'
 #    webbrowser.open(url)
     
 app = dash.Dash(  __name__, meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}], prevent_initial_callbacks='initial_duplicate',  suppress_callback_exceptions=True)
-server = app.server
+
 Aplicativo(app, url, ejecucion_demanda_parte_2, dem_total)
 
 if __name__ == "__main__":

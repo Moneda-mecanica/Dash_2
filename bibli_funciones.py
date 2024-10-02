@@ -8,7 +8,7 @@ import numpy as np
 import os
 import holidays
 from datetime import datetime, timedelta
-import locale
+#import locale
 import time
 
 import dash
@@ -24,7 +24,7 @@ from dash import no_update
 #import tkinter as tk
 #from tkinter import ttk
 
-locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
+#locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
 
 def cargar_info_raw_demanda(ruta_raw):
     df_total = pd.DataFrame(columns= ['Fecha', 'Nombre', 'Codigo', 'Activa', 'Reactiva'])

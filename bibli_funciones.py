@@ -10,7 +10,6 @@ import holidays
 from datetime import datetime, timedelta
 import locale
 import time
-from openpyxl import load_workbook
 
 import dash
 import dash_core_components as dcc
@@ -22,8 +21,8 @@ from dash.dependencies import Input, Output, State
 from dash import no_update
 
 
-import tkinter as tk
-from tkinter import ttk
+#import tkinter as tk
+#from tkinter import ttk
 
 locale.setlocale(locale.LC_TIME, 'en_US.UTF-8')
 
@@ -671,7 +670,7 @@ def ejecucion_demanda_parte_2(fecha, df_curva_historicas_dem_a, df_curva_analisi
         if index == 47: a = timedelta(minutes=1) 
         hora = fecha + (index + 1) * timedelta(minutes=30) - a                  
         hora_1.append(hora.time().strftime('%H:%M'))
-            
+    """        
     ventana = tk.Tk()
     ventana.title("Ejecutando")
 
@@ -683,7 +682,7 @@ def ejecucion_demanda_parte_2(fecha, df_curva_historicas_dem_a, df_curva_analisi
 
     barra_progreso = ttk.Progressbar(marco, orient='horizontal', length=300, mode='determinate')
     barra_progreso.pack(pady=10)
-    
+    """
     usuario_atipico, data_atipico, df_curva_analisis = aproximacion_polinimica_curva_analisis(fecha, hora_1, usuarios, df_curva_analisis_dem_a)
     
     
@@ -703,10 +702,12 @@ def ejecucion_demanda_parte_2(fecha, df_curva_historicas_dem_a, df_curva_analisi
             if es_feriado(fecha):
                tabla_datos_desviaciones_final, tabla_datos_totales_final, cont_1 = ejecucion_demanda_parte_1(fecha, df_curva_historicas_dem_a, usuario, curva_analisis, curvas_analisis, cont_1, hora_1, usuario_3, tabla_datos_desviaciones_final, tabla_datos_totales_final)
                
-               cont_1 = cont_1 + 1 
+               cont_1 = cont_1 + 1
+               """
                progreso = (cont_1 / num) * 100
                barra_progreso['value'] = progreso
                ventana.update() 
+               """
 
                print(cont_1) 
                
@@ -714,9 +715,11 @@ def ejecucion_demanda_parte_2(fecha, df_curva_historicas_dem_a, df_curva_analisi
                tabla_datos_desviaciones_final, tabla_datos_totales_final, cont_1 = ejecucion_demanda_parte_1(fecha, df_curva_historicas_dem_a, usuario, curva_analisis, curvas_analisis, cont_1, hora_1, usuario_3, tabla_datos_desviaciones_final, tabla_datos_totales_final)
                
                cont_1 = cont_1 + 1 
+               """
                progreso = (cont_1 / num) * 100
                barra_progreso['value'] = progreso
                ventana.update() 
+               """
 
                print(cont_1)
                
@@ -724,19 +727,21 @@ def ejecucion_demanda_parte_2(fecha, df_curva_historicas_dem_a, df_curva_analisi
                tabla_datos_desviaciones_final, tabla_datos_totales_final, cont_1 = ejecucion_demanda_parte_1(fecha, df_curva_historicas_dem_a, usuario, curva_analisis, curvas_analisis, cont_1, hora_1, usuario_3, tabla_datos_desviaciones_final, tabla_datos_totales_final)
                
                cont_1 = cont_1 + 1
+               """
                progreso = (cont_1 / num) * 100
                barra_progreso['value'] = progreso
                ventana.update() 
+               """
                
                print(cont_1)
             
     
-    ventana.destroy()
+    #ventana.destroy()
     datos_frecuencia_desviaciones = pd.DataFrame()
     #datos_frecuencia_desviaciones = pd.concat([datos_frecuencia_desviaciones, tabla_datos_desviaciones_final['usuario'], tabla_datos_desviaciones_final['hora'], tabla_datos_desviaciones_final['num']], axis=1)
     datos_frecuencia_desviaciones = pd.concat([datos_frecuencia_desviaciones, tabla_datos_desviaciones_final['usuario'], tabla_datos_desviaciones_final['hora']], axis=1)
     
-    ventana.mainloop()
+    #ventana.mainloop()
     return tabla_datos_desviaciones_final, tabla_datos_totales_final, datos_frecuencia_desviaciones, usuario_atipico, data_atipico, df_curva_analisis
 
 
@@ -917,7 +922,7 @@ def Aplicativo(app, url, ejecucion_demanda_parte_2, dem_total):
 
     app.layout = html.Div([
         html.Div([
-               dcc.Location(id='url', refresh=False),
+               #dcc.Location(id='url', refresh=False),
                html.Div(id='page-content'),]),
         
         html.Br(),
@@ -1164,9 +1169,3 @@ def Aplicativo(app, url, ejecucion_demanda_parte_2, dem_total):
          else:
              return no_update, no_update
         
-
-
-
-
-
-

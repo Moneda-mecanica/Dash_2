@@ -1,7 +1,7 @@
 
 import dash
-import webbrowser
-import threading
+#import webbrowser
+#import threading
 
 
 #dcc.Loading
@@ -16,13 +16,13 @@ from bibli_funciones import tab_graficos_dem_a, leer_archivo_raw_demanda, cargar
 
 url = 'http://127.0.0.1:8050'
 
-def open_browser():
-    webbrowser.open(url)
+#def open_browser():
+#    webbrowser.open(url)
     
 app = dash.Dash(  __name__, meta_tags=[{"name": "viewport", "content": "width=device-width, initial-scale=1"}], prevent_initial_callbacks='initial_duplicate',  suppress_callback_exceptions=True)
-
+server = app.server
 Aplicativo(app, url, ejecucion_demanda_parte_2, dem_total)
 
 if __name__ == "__main__":
-    threading.Timer(1, open_browser).start()
+    #threading.Timer(1, open_browser).start()
     app.run_server(debug=True)
